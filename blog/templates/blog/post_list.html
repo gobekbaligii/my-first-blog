@@ -1,29 +1,13 @@
-<html>
-  <head>
-    <title>Django Tutorial blog</title>
-  </head>
-  <body>
-    <div>
-      <h1><a href="/">Django Tutorial Blog</a></h1>
-    </div>
+{% extends 'blog/base.html' %} 
 
-    {% for post in posts %}
-    <div>
-      <h1><a href="">{{ post.title }}</a></h1>
-      <p style="font-weight: bold">published : {{ post.published_date }}</p>
+{% block content %} 
+  {% for post in posts %}
+    <div class="post">
+      <h1><a href=" {% url 'post_detail' pk=post.pk %} "> {{ post.title }} </a></h1>
+      <div class="date">
+        <p>Publish Date : {{ post.published_date }}</p>
+      </div>
       <p>{{ post.text|linebreaksbr }}</p>
     </div>
-    {% endfor %}
-
-    <div>
-      <h2><a href="">Second Post</a></h2>
-      <p>published: 14.06.2014, 12:20</p>
-      <p>
-        Once upon a time, in a land far away... It's such a fun experience
-        working with computers. I can't get enough of programming now! When
-        camels were town criers and fleas were barbers, I was gently rocking my
-        mother's cradle.
-      </p>
-    </div>
-  </body>
-</html>
+  {% endfor %} 
+{% endblock %}
